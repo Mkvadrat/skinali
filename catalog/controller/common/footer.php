@@ -106,6 +106,8 @@ class ControllerCommonFooter extends Controller {
 			'status' => 0,
 			'message' => ''
 		);
+		
+		$site_url = $_SERVER['SERVER_NAME'];
 	
 		if (isset($this->request->post['name'])) {$name = $this->request->post['name']; if ($name == '') {unset($name);}}
 		if (isset($this->request->post['tel'])) {$tel = $this->request->post['tel']; if ($tel == '') {unset($tel);}}
@@ -122,13 +124,13 @@ class ControllerCommonFooter extends Controller {
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
 			$mail->setTo($this->config->get('config_email'));
-			$mail->setFrom("pipboy@ukr.net");
+			$mail->setFrom($site_url);
 			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
-			$mail->setText('Skinali 2017 все права защищены');
+			$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
+			$mail->setText("Имя: $name \nТелефон: $tel \n");
 			$send = $mail->send();
-			
-			if ($send == 'true'){
+						
+			if ($mail){
 				$json = array(
 					'status' => 1,
 					'message' => 'Ваше сообщение отправлено'
@@ -160,9 +162,144 @@ class ControllerCommonFooter extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 	
+	public function sendFullForm(){
+		$json = array();
+		
+		$json = array(
+			'status' => 0,
+			'message' => ''
+		);
+		
+		$site_url = $_SERVER['SERVER_NAME'];
 	
+		if (isset($this->request->post['name'])) {$name = $this->request->post['name']; if ($name == '') {unset($name);}}
+		if (isset($this->request->post['tel'])) {$tel = $this->request->post['tel']; if ($tel == '') {unset($tel);}}
+		if (isset($this->request->post['question'])) {$question = $this->request->post['question']; if ($question == '') {unset($question);}}
 	
+		if (isset($name) && isset($tel) && isset($question)){
+			
+			$mail = new Mail();
+			$mail->protocol = $this->config->get('config_mail_protocol');
+			$mail->parameter = $this->config->get('config_mail_parameter');
+			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+			$mail->setTo($this->config->get('config_email'));
+			$mail->setFrom($site_url);
+			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
+			$mail->setText("Имя: $name \nТелефон: $tel \nВопрос: $question\n");
+			$send = $mail->send();
+						
+			if ($mail){
+				$json = array(
+					'status' => 1,
+					'message' => 'Ваше сообщение отправлено'
+				);
+			}else{
+				$json = array(
+					'status' => 1,
+					'message' => 'Ошибка, сообщение не отправлено!'
+				);
+			}
+		}
 	
+		if (isset($this->request->post['name']) && isset($this->request->post['tel']) && isset($this->request->post['question'])){
+			$name = $this->request->post['name'];
+			$tel = $this->request->post['tel'];
+			$question = $this->request->post['question'];
+	
+			if ($name == '' || $tel == '' || $question == '') {
+				unset($name);
+				unset($tel);
+				unset($question);
+				
+				$json = array(
+					'status' => 1,
+					'message' => 'Ошибка, сообщение не отправлено! Заполните все поля!'
+				);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	
+	public function sendBidForm(){
+		$json = array();
+		
+		$json = array(
+			'status' => 0,
+			'message' => ''
+		);
+		
+		$site_url = $_SERVER['SERVER_NAME'];
+	
+		if (isset($this->request->post['name'])) {$name = $this->request->post['name']; if ($name == '') {unset($name);}}
+		if (isset($this->request->post['tel'])) {$tel = $this->request->post['tel']; if ($tel == '') {unset($tel);}}
+	
+		if (isset($name) && isset($tel)){
+			
+			if(isset($_POST['check'])){
+				$check = $_POST['check'];
+	
+				if($check == 1){
+					$checked = '<p style="background-color:#f00">Пользователь согласился на обработку своих данных, указаных в заявке.</p>';
+				}else{
+					$checked = '';
+				}
+			}
+			
+			$mail = new Mail();
+			$mail->protocol = $this->config->get('config_mail_protocol');
+			$mail->parameter = $this->config->get('config_mail_parameter');
+			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+			$mail->setTo($this->config->get('config_email'));
+			$mail->setFrom($site_url);
+			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
+			$mail->setText("Имя: $name \nТелефон: $tel \n $checked");
+			$send = $mail->send();
+						
+			if ($mail){
+				$json = array(
+					'status' => 1,
+					'message' => 'Ваше сообщение отправлено'
+				);
+			}else{
+				$json = array(
+					'status' => 1,
+					'message' => 'Ошибка, сообщение не отправлено!'
+				);
+			}
+		}
+	
+		if (isset($this->request->post['name']) && isset($this->request->post['tel'])){
+			$name = $this->request->post['name'];
+			$tel = $this->request->post['tel'];
+	
+			if ($name == '' || $tel == '') {
+				unset($name);
+				unset($tel);
+				
+				$json = array(
+					'status' => 1,
+					'message' => 'Ошибка, сообщение не отправлено! Заполните все поля!'
+				);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 	
 	
 	

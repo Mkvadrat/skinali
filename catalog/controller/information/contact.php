@@ -57,6 +57,8 @@ class ControllerInformationContact extends Controller {
 		$data['entry_enquiry'] = $this->language->get('entry_enquiry');
 
 		$data['button_map'] = $this->language->get('button_map');
+		
+		$data['contact_inf'] = html_entity_decode($this->config->get('config_contact_page'), ENT_QUOTES, 'UTF-8');
 
 		if (isset($this->error['name'])) {
 			$data['error_name'] = $this->error['name'];

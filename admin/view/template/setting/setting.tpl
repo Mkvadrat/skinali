@@ -217,6 +217,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contact-page">Страница контактов:</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_contact_page" rows="5" placeholder="Страница контактов:" id="input-contact-page" class="form-control"><?php echo $config_contact_page; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-image"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_image; ?>"><?php echo $entry_image; ?></span></label>
                   <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                     <input type="hidden" name="config_image" value="<?php echo $config_image; ?>" id="input-image" />

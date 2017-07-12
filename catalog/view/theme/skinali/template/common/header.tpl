@@ -106,7 +106,7 @@
                                     <li><a href="<?php echo $menus['href']; ?>"><?php echo $menus['name']; ?></a></li>
                                 <?php } ?>
                                 <?php } ?>
-                                <li><a href="#">Заявка</a></li>
+                                <li><a class="fancybox" href="#application">Заявка</a></li>
                             </ul>
                         </nav>
 
@@ -115,7 +115,7 @@
                                 <input type="search" name="search" placeholder="Найти изображение по №">
                                 <input class="but-search" type="submit" value="">
                             </div>
-                            <a class="button" href="#">Заказать звонок</a>
+                            <a class="button fancybox" href="#call-back">Заказать звонок</a>
                         </div>
                     </div>
                 </div>

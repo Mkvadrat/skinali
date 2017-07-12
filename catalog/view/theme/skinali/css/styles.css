@@ -54,7 +54,7 @@ body {
 
 p {
   padding-bottom: 20px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 20px;
   color: #424242;
@@ -124,6 +124,7 @@ input[type="submit"] {
 
 /* start form */
 .form {
+  max-width: 420px;
   background-color: rgba(255, 255, 255, 0.8);
   -webkit-box-shadow: 0 3px 29px rgba(0, 0, 0, 0.35);
   box-shadow: 0 3px 29px rgba(0, 0, 0, 0.35); }
@@ -185,6 +186,9 @@ input[type="submit"] {
   .form input[type="submit"] {
     display: block;
     margin: 0 auto; }
+  .form input[type="checkbox"] {
+    float: left;
+    margin-right: 5px; }
 
 input:focus::-webkit-input-placeholder {
   color: transparent; }
@@ -877,13 +881,22 @@ textarea:focus:-ms-input-placeholder {
 
 .main-contacts img {
   margin-top: 40px; }
-  
+
 .button-gallery{
   cursor: pointer;
 }
 
 /*-----------------------------*/
 /*----- end main-contacts -----*/
+/*-----------------------------*/
+/*-----------------------------*/
+/*----- start fancy-style -----*/
+/*-----------------------------*/
+.fancybox-skin {
+  padding: 0 !important; }
+
+/*-----------------------------*/
+/*------ end fancy-style ------*/
 /*-----------------------------*/
 
 /*# sourceMappingURL=styles.css.map */

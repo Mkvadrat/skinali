@@ -1377,6 +1377,12 @@ class ControllerSettingSetting extends Controller {
 			$data['config_contact_inf'] = $this->config->get('config_contact_inf');
 		}
 		
+		if (isset($this->request->post['config_contact_page'])) {
+			$data['config_contact_page'] = $this->request->post['config_contact_page'];
+		} else {
+			$data['config_contact_page'] = $this->config->get('config_contact_page');
+		}
+		
 		if (isset($this->request->post['config_mail_alert'])) {
 			$data['config_mail_alert'] = $this->request->post['config_mail_alert'];
 		} else {

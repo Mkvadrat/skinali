@@ -160,3 +160,4 @@
 2017-07-12 14:33:43 - PHP Notice:  Error: E-Mail message required! in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\system\library\mail.php on line 81
 2017-07-12 14:34:02 - PHP Notice:  Error: E-Mail message required! in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\system\library\mail.php on line 81
 2017-07-12 14:36:25 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\system\library\mail.php on line 164
+2017-07-12 16:40:48 - PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\system\library\mail.php on line 164

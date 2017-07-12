@@ -32,74 +32,58 @@
             </div>
         </div>
     </footer>
+	
+	<div class="hidden">
+        <div id="call-back">
+            <div class="form banner-form">
+                <p class="h2-title">Заказать бесплатный звонок</p>
+                <fieldset>
+                    <span>Введите, пожалуйста, Ваши контактные данные</span>
+                    <label for="#name">Ваше имя</label>
+                    <input id="name_full_hidden_form" type="text">
+                    <label for="tel">Ваш мобильный номер</label>
+                    <input id="tel_full_hidden_form" type="tel">
+                    <label>Ваш вопрос или комментарий</label>
+                    <textarea id="question_full_hidden_form"></textarea>
+                    <span><i class="fa fa-lock" aria-hidden="true"></i>Ваши данные надёжно защищены</span>
+                    <input class="button" onclick="sendFullHiddenForm();" type="submit" value="Оставить заявку">
+                </fieldset>
+            </div>
+        </div>
 
+        <div id="application">
+            <div class="form banner-form">
+                <p class="h2-title">Оставить заявку на расчёт стоимости</p>
+                <fieldset>
+                    <span>Введите, пожалуйста, Ваши контактные данные</span>
+                    <label for="#name">Ваше имя</label>
+                    <input id="name_bid_form" type="text">
+                    <label for="tel">Ваш мобильный номер</label>
+                    <input id="tel_bid_form" type="tel">
+                    <input type="checkbox" id="check_bid_form">
+					<input type="hidden" id="checkvalue" value="1">
+                    <span>Отправляя заявку на расчет стоимости, я соглашаюсь на обработку своих данных, указаных в заявке, с целью получения расчета стоимости моего изделия</span>
+                    <input class="button" onclick="sendBidForm();" type="submit" value="Оставить заявку">
+                </fieldset>
+            </div>
+        </div>
+    </div>
     <!-- end footer -->
 
-<script>
-    $(function(){
-        $('.but').click(function(){
-            $('.block').toggleClass('active');
-        });
-    });
-</script>
-
-<ul>
-
-<script>
-    $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        nav:true,
-        autoplay:true,
-        smartSpeed:2000,
-        autoplayTimeout:5000,
-        dots:true,
-        stopOnHover:true,
-        navigationText:["",""],
-        rewindNav:true,
-        pagination:true,
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items:1
-            },
-            1000:{
-                items:1
-            }
-        }
-        });
-
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("a.fancybox").fancybox();
-    });
-</script>
-
 <!-- Смена картинки при клике -->
-
 <script type="text/javascript">
     function l_image (a) {
         document.example_img.src=a
     }
 </script>
 
-<!-- Добавление активного состояния ссылке при клике -->
-
-<script>
-    $(function() {
-        $(".work-easily li span a").click(function() {
-            $(".work-easily li span a").removeClass("active");         
-            $(this).toggleClass("active");
-        })
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
     });
 </script>
 
+<!-- Формы -->
 <script type="text/javascript">
 function sendFormHeader(){
 	$.ajax({
@@ -124,6 +108,63 @@ function sendFormFooter(){
             'name' : $('#name_footer').val(),
             'tel' : $('#tel_footer').val(),
         },
+		dataType: 'json',
+		success: function(data) {
+			swal(data.message);
+		}
+	});
+}
+
+function sendFullForm(){
+	$.ajax({
+		url: 'index.php?route=common/footer/sendFullForm',
+		type: 'post',
+		data: {  
+            'name' : $('#name_contact_page').val(),
+            'tel' : $('#tel_contact_page').val(),
+			'question' : $('#question_contact_page').val(),
+        },
+		dataType: 'json',
+		success: function(data) {
+			swal(data.message);
+		}
+	});
+}
+
+function sendFullHiddenForm(){
+	$.ajax({
+		url: 'index.php?route=common/footer/sendFullForm',
+		type: 'post',
+		data: {  
+            'name' : $('#name_full_hidden_form').val(),
+            'tel' : $('#tel_full_hidden_form').val(),
+			'question' : $('#question_full_hidden_form').val(),
+        },
+		dataType: 'json',
+		success: function(data) {
+			swal(data.message);
+		}
+	});
+}
+
+function sendBidForm(){
+	var check;
+	if($("#check_bid_form").is(':checked')){
+		check = $("#checkvalue").val();
+	}else{
+		check = '';
+	}
+	
+	var data = {  
+		'name' : $('#name_bid_form').val(),
+		'tel' : $('#tel_full_hidden_form').val(),
+		'check' : check,
+    };
+	
+	$.ajax({
+		url: 'index.php?route=common/footer/sendBidForm',
+		type: 'post',
+		data: data,
 		dataType: 'json',
 		success: function(data) {
 			swal(data.message);
