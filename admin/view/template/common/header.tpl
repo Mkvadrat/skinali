@@ -12,6 +12,18 @@
 <?php } ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 <script type="text/javascript" src="view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<!-- ADD TO HEADER STYLE -->
+			<!-- ADD JQUERY UI AND STYLES -->
+			<script type="text/javascript" src="view/javascript/imagemanager/jquery/jquery-ui.js"></script>
+			<link rel="stylesheet" type="text/css" media="screen" href="view/javascript/imagemanager/jquery/jquery-ui.css">
+
+			<!-- ADD ELFINDER SCRIPT AND STYLES -->
+			<script type="text/javascript" src="view/javascript/imagemanager/elFinder/js/elfinder.full.js"></script>
+			<link rel="stylesheet" type="text/css" media="screen" href="view/javascript/imagemanager/elFinder/css/elfinder.full.css">
+			<link rel="stylesheet" type="text/css" media="screen" href="view/javascript/imagemanager/elFinder/css/theme.css">
+
+			<!-- ADD STYLES SORTABLE MOD -->
+			<link rel="stylesheet" type="text/css" media="screen" href="view/javascript/imagemanager/sortablemod/imagemanager.css">
 <script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
 <link href="view/stylesheet/bootstrap.css" type="text/css" rel="stylesheet" />
 <link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />

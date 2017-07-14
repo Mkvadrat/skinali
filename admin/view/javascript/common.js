@@ -173,7 +173,37 @@ $(document).ready(function() {
 				$('.popover').remove();
 			});
 		});
+		
+		
+		/*Imagemanager*/
+		$('#button-imagemanager').on('click', function() {
+			$('#modal-image').remove();
 
+			$.ajax({
+				url: 'index.php?route=common/imagemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+				dataType: 'html',
+				beforeSend: function() {
+					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+					$('#button-image').prop('disabled', true);
+				},
+				complete: function() {
+					$('#button-image i').replaceWith('<i class="fa fa-pencil"></i>');
+					$('#button-image').prop('disabled', false);
+				},
+				success: function(html) {
+					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+
+					$('#modal-image').modal('show');
+				}
+			});
+
+			$(element).popover('hide', function() {
+				$('.popover').remove();
+			});
+		});
+		/*Imagemanager*/
+		
+		
 		$('#button-clear').on('click', function() {
 			$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 

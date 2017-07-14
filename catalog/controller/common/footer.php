@@ -247,7 +247,7 @@ class ControllerCommonFooter extends Controller {
 				$check = $_POST['check'];
 	
 				if($check == 1){
-					$checked = '<p style="background-color:#f00">Пользователь согласился на обработку своих данных, указаных в заявке.</p>';
+					$checked = '<p style="background-color:#f00; width:500px;">Пользователь согласился на обработку своих данных, указаных в заявке.</p>';
 				}else{
 					$checked = '';
 				}
@@ -266,7 +266,7 @@ class ControllerCommonFooter extends Controller {
 			$mail->setFrom($site_url);
 			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
-			$mail->setText("Имя: $name \nТелефон: $tel \n $checked");
+			$mail->setHtml('Имя: ' . $name . '<br>' . 'Телефон: ' . $tel . '<br>' . $checked);
 			$send = $mail->send();
 						
 			if ($mail){
@@ -299,42 +299,5 @@ class ControllerCommonFooter extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

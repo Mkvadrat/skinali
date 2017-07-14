@@ -7,17 +7,129 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+	.header .menu-block .menu {
+		display: none;
+	}
 
+	.header .menu-block .menu-button {
+		width: 40px;
+		height: 40px;
+		border: none;
+		margin: 10px 0 15px;
+	}
+
+	.header .menu-block .menu-button i {
+		font-size: 30px;
+	}
+
+	.header .top-line-header .search-call-block {
+		top: 10px;
+	}
+
+	.header .bottom-line-header .logo {
+		margin: 5px 100px 0 10px;
+	}
+
+	.header .bottom-line-header p:nth-child(2) {
+    	margin-right: 112px;
+	}
+
+	.header .bottom-line-header p:nth-child(3) {
+		margin-right: 0;
+		float: none;
+		position: relative;
+		top: 22px;
+	}
+
+	.header .bottom-line-header .time-work {
+		float: none;
+		position: relative;
+		top: 40px;
+		right: 50%;
+	}
+
+	.header .bottom-line-header address {
+		position: relative;
+		right: 20%;
+		top: -15px;
+	}
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+	.header .bottom-line-header p:nth-child(3),
+	.header .bottom-line-header .time-work {
+		display: none;
+	}
 
+	.header .bottom-line-header .logo {
+		margin-right: 0;
+	}
+
+	.header .bottom-line-header .logo {
+		float: none;
+		margin: 0 auto;
+		width: 158px;
+	}
+
+	.header .bottom-line-header p:nth-child(2) {
+		margin: 10px auto 20px;
+		float: none;
+		width: 188px;
+	}
+
+	.header .bottom-line-header address {
+		right: 0;
+		top: 0;
+		float: none;
+		width: 178px;
+		margin: 0 auto 30px;
+	}
+
+	.banner .form {
+		float: none;
+		margin: 0 auto;
+	}
+}
+
+@media only screen and (max-width : 630px) {
+	.header .top-line-header nav ul li {
+		display: block;
+		float: none;
+	}
+
+	.header .top-line-header .search-call-block {
+		position: relative;
+		right: 0;
+		top: 0;
+		width: 200px;
+		margin: 0 auto;
+	}
+
+	.header .top-line-header .search-call-block .search-block {
+		float: none;
+		top: 0;
+		margin-bottom: 20px;
+	}
+
+	.header .top-line-header .search-call-block {
+	    text-align: center;
+	}
+
+	.header .top-line-header .search-call-block .button {
+		margin-bottom: 20px;
+	}
+
+	.header .menu-block .menu {
+		margin-bottom: 25px;
+	}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
-
+	.header .menu-block .menu-button {
+		margin: 10px 0 30px;
+	}
 }
 
 /* Custom, iPhone Retina */
@@ -45,7 +157,9 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-
+	.header .menu-block .menu {
+		display: block !important;
+	}
 }
 
  /* Large Devices, Wide Screens */

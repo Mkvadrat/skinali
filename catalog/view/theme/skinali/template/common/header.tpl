@@ -97,8 +97,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <nav>
-                            <ul>
+                        <nav class="menu-block">
+                            <button type="button" class="menu-button hidden-md hidden-lg"><i class="fa fa-bars"></i></button>
+                            <ul class="menu">
                                 <?php foreach($menu as $menus){ ?>
                                 <?php if($menus['curent'] == $curent){ ?>
                                     <li><a class="active" href="<?php echo $menus['href']; ?>"><?php echo $menus['name']; ?></a></li>
