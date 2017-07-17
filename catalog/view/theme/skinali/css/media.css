@@ -31,6 +31,9 @@
 		height: 40px;
 		border: none;
 		margin: 10px 0 15px;
+		background: #FFF;
+		padding: 0;
+		text-align: center;
 	}
 
 	.header .menu-block .menu-button i {
@@ -141,6 +144,11 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+
+	.header .top-line-header .search-call-block .search-block input[type="search"] {
+		font-size: 12px;
+	}
+
 	.header .bottom-line-header p:nth-child(3),
 	.header .bottom-line-header .time-work {
 		display: none;
@@ -166,8 +174,9 @@
 		right: 0;
 		top: 0;
 		float: none;
-		width: 178px;
+		width: 180px;
 		margin: 0 auto 30px;
+		padding-left: 30px;
 	}
 
 	.banner .form {
