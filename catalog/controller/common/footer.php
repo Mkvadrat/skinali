@@ -197,7 +197,7 @@ class ControllerCommonFooter extends Controller {
 			if ($mail){
 				$json = array(
 					'status' => 1,
-					'message' => 'Ваше сообщение отправлено'
+					'message' => 'Вы отправили заявку на ЗВОНОК. Наш менеджер свяжется с Вами в ближайшее время'
 				);
 			}else{
 				$json = array(
@@ -272,7 +272,7 @@ class ControllerCommonFooter extends Controller {
 			if ($mail){
 				$json = array(
 					'status' => 1,
-					'message' => 'Ваше сообщение отправлено'
+					'message' => 'Вы отправили заявку на расчет стоимости. Наш менеджер свяжется с Вами в ближайшее время'
 				);
 			}else{
 				$json = array(

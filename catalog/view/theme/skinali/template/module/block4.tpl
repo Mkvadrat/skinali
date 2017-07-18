@@ -28,7 +28,7 @@
                 </ul>
                 
                 <p class="button-block">
-                    <a class="button button-gallery" onclick="ajaxGallery()">посмотреть все проекты</a>
+                    <a class="button button-gallery" onclick="ajaxGallery()">посмотреть все изображения</a>
                 </p>
             </div>
         </div>

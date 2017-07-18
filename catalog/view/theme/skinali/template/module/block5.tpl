@@ -15,7 +15,7 @@
                     <?php } ?>
                 </ul>
                 <p class="button-block">
-                    <a href="<?php echo $view_all; ?>" class="button">посмотреть все проекты</a>
+                    <a href="<?php echo $view_all; ?>" class="button">посмотреть все работы</a>
                 </p>
             </div>
         </div>

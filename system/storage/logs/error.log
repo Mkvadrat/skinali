@@ -615,3 +615,9 @@
 2017-07-14 16:59:01 - PHP Notice:  Undefined variable: discount_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 613
 2017-07-14 16:59:01 - PHP Notice:  Undefined variable: special_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 640
 2017-07-14 16:59:01 - PHP Notice:  Undefined variable: recurring_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 681
+2017-07-14 17:30:01 - PHP Notice:  Undefined variable: attribute_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 391
+2017-07-14 17:30:01 - PHP Notice:  Undefined variable: option_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 440
+2017-07-14 17:30:01 - PHP Notice:  Undefined variable: option_value_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 576
+2017-07-14 17:30:01 - PHP Notice:  Undefined variable: discount_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 613
+2017-07-14 17:30:01 - PHP Notice:  Undefined variable: special_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 640
+2017-07-14 17:30:01 - PHP Notice:  Undefined variable: recurring_row in C:\Server\domains\skinali.3331141.xeovo.ml\public_html\admin\view\template\catalog\product_form.tpl on line 681
