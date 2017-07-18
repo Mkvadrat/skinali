@@ -247,38 +247,41 @@ class ControllerCommonFooter extends Controller {
 				$check = $_POST['check'];
 	
 				if($check == 1){
-					$checked = '<p style="background-color:#f00; width:500px;">Пользователь согласился на обработку своих данных, указаных в заявке.</p>';
+					
+					$mail = new Mail();
+					$mail->protocol = $this->config->get('config_mail_protocol');
+					$mail->parameter = $this->config->get('config_mail_parameter');
+					$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+					$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+					$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+					$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+					$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+		
+					$mail->setTo($this->config->get('config_email'));
+					$mail->setFrom($site_url);
+					$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
+					$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
+					$mail->setHtml('Имя: ' . $name . '<br>' . 'Телефон: ' . $tel);
+					$send = $mail->send();
+								
+					if ($mail){
+						$json = array(
+							'status' => 1,
+							'message' => 'Вы отправили заявку на расчет стоимости. Наш менеджер свяжется с Вами в ближайшее время'
+						);
+					}else{
+						$json = array(
+							'status' => 1,
+							'message' => 'Ошибка, сообщение не отправлено!'
+						);
+					}
+					
 				}else{
-					$checked = '';
+						$json = array(
+							'status' => 1,
+							'message' => 'Отправляя заявку на расчет стоимости, Вы должны быть согласны на обработку своих данных, указаных в заявке, с целью получения расчета стоимости изделия!'
+						);
 				}
-			}
-			
-			$mail = new Mail();
-			$mail->protocol = $this->config->get('config_mail_protocol');
-			$mail->parameter = $this->config->get('config_mail_parameter');
-			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
-			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
-			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-
-			$mail->setTo($this->config->get('config_email'));
-			$mail->setFrom($site_url);
-			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
-			$mail->setHtml('Имя: ' . $name . '<br>' . 'Телефон: ' . $tel . '<br>' . $checked);
-			$send = $mail->send();
-						
-			if ($mail){
-				$json = array(
-					'status' => 1,
-					'message' => 'Вы отправили заявку на расчет стоимости. Наш менеджер свяжется с Вами в ближайшее время'
-				);
-			}else{
-				$json = array(
-					'status' => 1,
-					'message' => 'Ошибка, сообщение не отправлено!'
-				);
 			}
 		}
 	
