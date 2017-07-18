@@ -7,6 +7,21 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+
+	.half-blocks-list li {
+		overflow: hidden;
+	}
+
+	.half-blocks-list li p {
+		padding-top: 10px !important;
+		padding-bottom: 10px !important;
+	}
+
+	.half-blocks-list li img {
+		height: 100%;
+		width: auto;
+	}
+
 	.header .menu-block .menu {
 		display: none;
 	}
@@ -16,6 +31,9 @@
 		height: 40px;
 		border: none;
 		margin: 10px 0 15px;
+		background: #FFF;
+		padding: 0;
+		text-align: center;
 	}
 
 	.header .menu-block .menu-button i {
@@ -38,7 +56,7 @@
 		margin-right: 0;
 		float: none;
 		position: relative;
-		top: 22px;
+		top: 12px;
 	}
 
 	.header .bottom-line-header .time-work {
@@ -53,10 +71,84 @@
 		right: 20%;
 		top: -15px;
 	}
+
+	.products-list {
+		display: block;
+		width: 100%;
+	}
+
+	.products-list li {
+		display: table-cell;
+		margin: 10px !important;
+		width: 30%;
+	}
+
+	.products-list li img {
+		height: 100% !important;
+		width: auto !important;
+		overflow: hidden;
+	}
+
+	.icon-list li {
+		padding-top: 0;
+	}
+
+	.footer .block-logo-footer {
+		float: none;
+		margin: 0 auto;
+		padding-bottom: 20px;
+	}
+
+	.footer address {
+		float: none;
+		width: 100%;
+		padding-bottom: 20px;
+	}
+
+	.footer address br {
+		display: none;
+	}
+
+	.footer .call-footer {
+	    width: 164px;
+		float: none;
+		margin: 0 auto;
+		padding-bottom: 20px;
+	}
+
+	.footer .all-rights,
+	.footer .developed-in {
+		float: none;
+		text-align: center;
+		padding-top: 30px;
+		padding-bottom: 0px;
+	}
+
+	.footer .developed-in {
+		padding-top: 0;
+	}
+
+	.main-contacts img {
+		display: block;
+		max-width: 484px;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.main-contacts .form {
+		max-width: 100%;
+		width: 100%;
+	}
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+
+	.header .top-line-header .search-call-block .search-block input[type="search"] {
+		font-size: 12px;
+	}
+
 	.header .bottom-line-header p:nth-child(3),
 	.header .bottom-line-header .time-work {
 		display: none;
@@ -75,20 +167,33 @@
 	.header .bottom-line-header p:nth-child(2) {
 		margin: 10px auto 20px;
 		float: none;
-		width: 188px;
+		width: 194px;
 	}
 
 	.header .bottom-line-header address {
 		right: 0;
 		top: 0;
 		float: none;
-		width: 178px;
+		width: 180px;
 		margin: 0 auto 30px;
+		padding-left: 30px;
 	}
 
 	.banner .form {
 		float: none;
 		margin: 0 auto;
+	}
+
+	.products-list li {
+		width: 50%;
+		margin: 0 !important;
+		border: 4px solid #fff;
+	}
+
+	.products-list li img {
+		height: auto !important;
+		width: 100% !important;
+		overflow: hidden;
 	}
 }
 
@@ -123,12 +228,111 @@
 	.header .menu-block .menu {
 		margin-bottom: 25px;
 	}
+
+	.half-blocks-list li {
+		width: 100%;
+	}
+
+	.half-blocks-list li img {
+	    height: auto;
+	    width: 100%;
+	}
+
+	.half-blocks-list li:nth-child(1) {
+		-webkit-order: 1;
+		    -ms-order: 1;
+		        order: 1;
+	}
+
+	.half-blocks-list li:nth-child(2) {
+		-webkit-order: 2;
+		    -ms-order: 2;
+		        order: 2;
+	}
+
+	.half-blocks-list li:nth-child(3) {
+		-webkit-order: 4;
+		    -ms-order: 4;
+		        order: 4;
+	}
+
+	.half-blocks-list li:nth-child(4) {
+		-webkit-order: 3;
+		    -ms-order: 3;
+		        order: 3;
+	}
+
+	.half-blocks-list li:nth-child(5) {
+		-webkit-order: 5;
+		    -ms-order: 5;
+		        order: 5;
+	}
+
+	.half-blocks-list li:nth-child(6) {
+		-webkit-order: 6;
+		    -ms-order: 6;
+		        order: 6;
+	}
+
+	.half-blocks-list li:nth-child(7) {
+		-webkit-order: 8;
+		    -ms-order: 8;
+		        order: 8;
+	}
+
+	.half-blocks-list li:nth-child(8) {
+		-webkit-order: 7;
+		    -ms-order: 7;
+		        order: 7;
+	}
+
+	.half-blocks-list li:nth-child(9) {
+		-webkit-order: 9;
+		    -ms-order: 9;
+		        order: 9;
+	}
+
+	.half-blocks-list li:nth-child(10) {
+		-webkit-order: 10;
+		    -ms-order: 10;
+		        order: 10;
+	}
+
+	.half-blocks-list li:nth-child(11) {
+		-webkit-order: 12;
+		    -ms-order: 12;
+		        order: 12;
+	}
+
+	.half-blocks-list li:nth-child(12) {
+		-webkit-order: 11;
+		    -ms-order: 11;
+		        order: 11;
+	}
+
+	.half-blocks-list li p {
+		text-align: left !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
 	.header .menu-block .menu-button {
 		margin: 10px 0 30px;
+	}
+
+	.products-list li {
+		width: 100%;
+	}
+
+	.small-banner .banner-form {
+		position: relative;
+		top: 0;
+		left: auto;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 

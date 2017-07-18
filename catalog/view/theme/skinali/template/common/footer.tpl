@@ -23,11 +23,11 @@
                         <?php echo $contact_inf; ?>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-5 col-md-5 col-sm-12">
                     <p class="all-rights">Skinali 2017 все права защищены</p>
                 </div>
-                <div class="col-md-7">
-                    <p><a class="make-in" href="http://mkvadrat.com/">Сайт разработан в <img src="catalog/view/theme/skinali/images/icon-m2.jpg" alt=""></a></p>
+                <div class="col-lg-7 col-md-5 col-sm-12">
+                    <p class="developed-in"><a class="make-in" href="http://mkvadrat.com/">Сайт разработан в <img src="catalog/view/theme/skinali/images/icon-m2.jpg" alt=""></a></p>
                 </div>
             </div>
         </div>
