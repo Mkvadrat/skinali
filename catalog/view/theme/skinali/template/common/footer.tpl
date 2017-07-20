@@ -157,7 +157,7 @@ function sendBidForm(){
 	
 	var data = {  
 		'name' : $('#name_bid_form').val(),
-		'tel' : $('#tel_full_hidden_form').val(),
+		'tel' : $('#tel_bid_form').val(),
 		'check' : check,
     };
 	
