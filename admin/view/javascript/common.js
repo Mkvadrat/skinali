@@ -142,7 +142,7 @@ $(document).ready(function() {
 			placement: 'right',
 			trigger: 'manual',
 			content: function() {
-				return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+				return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-imagemanager" class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i></button></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
 			}
 		});
 
@@ -174,8 +174,6 @@ $(document).ready(function() {
 			});
 		});
 		
-		
-		/*Imagemanager*/
 		$('#button-imagemanager').on('click', function() {
 			$('#modal-image').remove();
 
@@ -201,9 +199,7 @@ $(document).ready(function() {
 				$('.popover').remove();
 			});
 		});
-		/*Imagemanager*/
-		
-		
+
 		$('#button-clear').on('click', function() {
 			$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 
