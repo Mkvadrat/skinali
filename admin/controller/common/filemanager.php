@@ -66,9 +66,9 @@ class ControllerCommonFileManager extends Controller {
 			if (is_dir($image)) {
 				$url = '';
 
-        if (isset($this->request->get['cke'])) {
-          $url .= '&cke=' . $this->request->get['cke'];
-        }
+			if (isset($this->request->get['cke'])) {
+			  $url .= '&cke=' . $this->request->get['cke'];
+			}
 
 				if (isset($this->request->get['target'])) {
 					$url .= '&target=' . $this->request->get['target'];
@@ -164,9 +164,9 @@ class ControllerCommonFileManager extends Controller {
 			}
 		}
 
-    if (isset($this->request->get['cke'])) {
-      $url .= '&cke=' . $this->request->get['cke'];
-    }
+		if (isset($this->request->get['cke'])) {
+		  $url .= '&cke=' . $this->request->get['cke'];
+		}
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
@@ -185,9 +185,9 @@ class ControllerCommonFileManager extends Controller {
 			$url .= '&directory=' . urlencode($this->request->get['directory']);
 		}
 
-    if (isset($this->request->get['cke'])) {
-      $url .= '&cke=' . $this->request->get['cke'];
-    }
+		if (isset($this->request->get['cke'])) {
+		  $url .= '&cke=' . $this->request->get['cke'];
+		}
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
@@ -209,9 +209,9 @@ class ControllerCommonFileManager extends Controller {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
 
-    if (isset($this->request->get['cke'])) {
-      $url .= '&cke=' . $this->request->get['cke'];
-    }
+		if (isset($this->request->get['cke'])) {
+		  $url .= '&cke=' . $this->request->get['cke'];
+		}
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];

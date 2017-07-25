@@ -62,7 +62,7 @@ $('a.thumbnail').on('click', function(e) {
 <?php } else { ?>
 <?php if (!$cke){ ?>
 // Get the current selection
-var range = window.getSelection().getRangeAt(0);
+var range = window.getSelection('#<?php echo $thumb; ?>').getRangeAt(0);
 var node = range.startContainer;
 var startOffset = range.startOffset;  // where the range starts
 var endOffset = range.endOffset;      // where the range ends

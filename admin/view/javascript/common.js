@@ -150,10 +150,12 @@ $(document).ready(function() {
 
 		$('#button-image').on('click', function() {
 			$('#modal-image').remove();
-
+			
 			$.ajax({
-				url: 'index.php?route=common/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+				url: 'index.php?route=common/filemanager&token=' + getURLVar('token'),
+				method: "GET",
 				dataType: 'html',
+				data: { thumb : $(element).attr('id'), target : $(element).parent().find('input').attr('id') },
 				beforeSend: function() {
 					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
 					$('#button-image').prop('disabled', true);
@@ -175,23 +177,25 @@ $(document).ready(function() {
 		});
 		
 		$('#button-imagemanager').on('click', function() {
-			$('#modal-image').remove();
+			$('#modal-imagemanager').remove();
 
 			$.ajax({
-				url: 'index.php?route=common/imagemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+				url: 'index.php?route=common/imagemanager&token=' + getURLVar('token'),
+				method: "GET",
 				dataType: 'html',
+				data: { thumb : $(element).attr('id'), target : $(element).parent().find('input').attr('id') },
 				beforeSend: function() {
-					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-					$('#button-image').prop('disabled', true);
+					$('#button-imagemanager i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+					$('#button-imagemanager').prop('disabled', true);
 				},
 				complete: function() {
-					$('#button-image i').replaceWith('<i class="fa fa-pencil"></i>');
-					$('#button-image').prop('disabled', false);
+					$('#button-imagemanager i').replaceWith('<i class="fa fa-pencil"></i>');
+					$('#button-imagemanager').prop('disabled', false);
 				},
 				success: function(html) {
-					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+					$('body').append('<div id="modal-imagemanager" class="modal">' + html + '</div>');
 
-					$('#modal-image').modal('show');
+					$('#modal-imagemanager').modal('show');
 				}
 			});
 
@@ -210,7 +214,7 @@ $(document).ready(function() {
 			});
 		});
 	});
-
+	
 	// tooltips on hover
 	$('[data-toggle=\'tooltip\']').tooltip({container: 'body', html: true});
 

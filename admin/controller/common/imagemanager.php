@@ -22,11 +22,9 @@ class ControllerCommonImageManager extends Controller {
             $data['target'] = '';
         }
 		
-		if ($this->config->get('imagemanager_language')) {
-			$data['language'] = strtolower($this->config->get('imagemanager_language'));
-		} else {
-			$data['language'] = 'en';
-		}
+		$data['language'] = 'ru';
+		
+		$data['token']=$this->session->data['token'];
 								
 		$this->response->setOutput($this->load->view('common/imagemanager.tpl', $data));
 		

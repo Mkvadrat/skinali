@@ -19,8 +19,9 @@
 <script>
 $(document).ready(function() {
 	$('#elfinder').elfinder({
-		url: 'index.php?route=common/imagemanager/init&token=' + getURLVar('token'),
+		url: 'index.php?route=common/imagemanager/init&token=<?php echo $token; ?>',
 		width: '100%',
+		lang: '<?php echo $language;?>',
 		resizable: false,
 		dragUploadAllow: true,
 		destroyOnClose: false,
@@ -34,14 +35,14 @@ $(document).ready(function() {
 				$.each(files, function(item, file) {
 					if ((file.read && file.hash)) {
 						$.ajax({
-							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=' + getURLVar('token'),
+							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=<?php echo $token; ?>',
 							method: 'POST',
 							dataType: 'json',
 							async: false,
 							success: function(data) {							
 								parent.addImages(data.thumb, fm.path(file.hash), item);
 								
-								$('#modal-image').modal('hide');
+								$('#modal-imagemanager').modal('hide');
 							}
 						});
 					}
@@ -50,9 +51,10 @@ $(document).ready(function() {
 				$.each(files, function(item, file) {
 					if ((file.read && file.hash)) {
 						$.ajax({
-							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=' + getURLVar('token'),
+							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=<?php echo $token; ?>',
 							method: 'POST',
 							dataType: 'json',
+							cache: false,
 							success: function(data) {
 								<?php if ($thumb) { ?>
 									$('#<?php echo $thumb; ?>').find('img').attr('src', data.thumb);
@@ -61,10 +63,11 @@ $(document).ready(function() {
 									$('#<?php echo $target; ?>').attr('value', fm.path(file.hash));
 								<?php } ?>
 								
-								$('#modal-image').modal('hide');
+								$('#modal-imagemanager').modal('hide');
 							}
 						});
 					}
+					
 				});
 			}
 		},

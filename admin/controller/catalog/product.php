@@ -385,7 +385,7 @@ class ControllerCatalogProduct extends Controller {
 
 		foreach ($results as $result) {
 
-      $category =  $this->model_catalog_product->getProductCategories($result['product_id']);
+			$category =  $this->model_catalog_product->getProductCategories($result['product_id']);
             
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$image = $this->model_tool_image->resize($result['image'], 40, 40);
@@ -1095,7 +1095,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->load->model('catalog/manufacturer');
 		
-    $data['manufacturers'] = $this->model_catalog_manufacturer->getManufacturers();
+		$data['manufacturers'] = $this->model_catalog_manufacturer->getManufacturers();
 
 		if (isset($this->request->post['manufacturer_id'])) {
 			$data['manufacturer_id'] = $this->request->post['manufacturer_id'];

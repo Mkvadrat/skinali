@@ -4,7 +4,15 @@
  * @author Andrew Berezovsky <andrew.berezovsky@gmail.com>
  * @version 2016-06-01
  */
-if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object') {
+(function(root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		define(['elfinder'], factory);
+	} else if (typeof exports !== 'undefined') {
+		module.exports = factory(require('elfinder'));
+	} else {
+		factory(root.elFinder);
+	}
+}(this, function(elFinder) {
 	elFinder.prototype.i18.ru = {
 		translator : 'Dmitry "dio" Levashov &lt;dio@std42.ru&gt;, Andrew Berezovsky &lt;andrew.berezovsky@gmail.com&gt;',
 		language   : 'Русский язык',
@@ -134,6 +142,10 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'cmdplaces'    : 'В избранное', // added 28.12.2014
 			'cmdchmod'     : 'Изменить права доступа', // from v2.1 added 20.6.2015
 			'cmdopendir'   : 'Открыть папку', // from v2.1 added 13.1.2016
+			'cmdtrash'     : 'Отправить в корзину',
+			'cmdempty'     : 'Очистить папку',
+			'cmdrestore'   : 'Восстановить файлы',
+			'selectFolder' : 'Выбрать папку', // from v2.1.20 added 13.12.2016
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Закрыть',
@@ -376,6 +388,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'kindRPM'         : 'Пакет RPM',
 			// texts
 			'kindText'        : 'Текстовый документ',
+			'textLabel'       : 'Текстовая метка', // from v2.1.17 added 13.10.2016
 			'kindTextPlain'   : 'Простой текст',
 			'kindPHP'         : 'Исходник PHP',
 			'kindCSS'         : 'Таблицы стилей CSS',
@@ -428,5 +441,5 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'kindVideoOGG'    : 'Видео Ogg'
 		}
 	};
-}
+}));
 
