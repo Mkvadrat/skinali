@@ -190,6 +190,7 @@ class ControllerCommonMenu extends Controller {
 		$data['gallery'] = $this->url->link('design/gallery', 'token=' . $this->session->data['token'], 'SSL');
 		$data['ourprojects'] = $this->url->link('catalog/ourprojects', 'token=' . $this->session->data['token'], 'SSL');
 		$data['jobs'] = $this->url->link('catalog/jobs', 'token=' . $this->session->data['token'], 'SSL');
+		$data['category_mgr_lite'] = $this->url->link('catalog/category_mgr_lite', 'token=' . $this->session->data['token'], 'SSL');
 
 		$data['openbay_show_menu'] = $this->config->get('openbaypro_menu');
 		$data['openbay_link_extension'] = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');

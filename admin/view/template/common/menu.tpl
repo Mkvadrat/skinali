@@ -7,6 +7,7 @@
       <li><a href="<?php echo $jobs; ?>">Наши работы</a></li>
       <li><a href="<?php echo $category; ?>">Категории фотобанка</a></li>
       <li><a href="<?php echo $product; ?>">Фотобанк</a></li>
+      <li><a href="<?php echo $category_mgr_lite; ?>">Легкое редактирование</a></li>
     </ul>
   </li>
   <li id="extension"><a class="parent"><i class="fa fa-puzzle-piece fa-fw"></i> <span><?php echo $text_extension; ?></span></a>
