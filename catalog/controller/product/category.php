@@ -173,9 +173,9 @@ class ControllerProductCategory extends Controller {
 				);
 				
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], 305, 190);
+					$image = $this->model_tool_image->resize($result['image'], 694, 140);
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', 305, 190);
+					$image = $this->model_tool_image->resize('placeholder.png', 694, 140);
 				}
 
 				$data['categories'][] = array(
@@ -202,9 +202,9 @@ class ControllerProductCategory extends Controller {
 
 			foreach ($results as $result) {
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], 305, 190);
+					$image = $this->model_tool_image->resize($result['image'], 694, 140);
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', 305, 190);
+					$image = $this->model_tool_image->resize('placeholder.png', 694, 140);
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {

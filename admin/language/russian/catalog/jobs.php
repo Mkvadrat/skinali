@@ -19,6 +19,8 @@ $_['text_browse']				= 'Выбрать';
 $_['text_clear']				= 'Очитстить';
 $_['text_image_manager']		= 'Менеджер изображений';
 $_['text_success']				= 'Успешно!';
+$_['entry_sort_order']          = 'Порядок сортировки:';
+$_['entry_image']          		= 'Изображение товара:';
 
 // Error
 $_['error_permission'] 			= 'У вас нет прав!';

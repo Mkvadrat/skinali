@@ -14,18 +14,22 @@ class ControllerCommonImageManager extends Controller {
             $data['thumb'] = $this->request->get['thumb'];
         } else {
             $data['thumb'] = '';
-        }	
+        }
+		
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+			   $catalog_protocol = HTTPS_CATALOG;
+		} else {
+			  $catalog_protocol = HTTP_CATALOG;
+		}
+	
+		$data['sound_path'] = $catalog_protocol . 'sounds/';
 								
 		if (isset($this->request->get['target'])) {
             $data['target'] = $this->request->get['target'];
         } else {
             $data['target'] = '';
         }
-		
-		$data['language'] = 'ru';
-		
-		$data['token']=$this->session->data['token'];
-								
+										
 		$this->response->setOutput($this->load->view('common/imagemanager.tpl', $data));
 		
 	}
@@ -33,22 +37,22 @@ class ControllerCommonImageManager extends Controller {
 	public function getTmb(){
 		
 		if (isset($this->request->get['thumb'])) {
-			$link = urldecode($this->request->get['thumb']);
+			$str_link = str_replace('\\','/', $this->request->get['thumb']);
+			$link = urldecode($str_link);
 		}
-		
+				
 		$this->load->model('tool/image');
 		
 		$data['thumb'] = $this->model_tool_image->resize($link, 100, 100);
+		
+		$data['link'] = $link;
 		
 		$this->response->setOutput(json_encode($data));
 	}
 		
 	public function init(){
 				
-		include_once DIR_SYSTEM . 'library/imagemanager/elFinderConnector.class.php';
-		include_once DIR_SYSTEM . 'library/imagemanager/elFinder.class.php';
-		include_once DIR_SYSTEM . 'library/imagemanager/elFinderVolumeDriver.class.php';
-		include_once DIR_SYSTEM . 'library/imagemanager/elFinderVolumeLocalFileSystem.class.php';
+		include_once DIR_SYSTEM . 'library/imagemanager/autoload.php';
 		
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			   $catalog_protocol = HTTPS_CATALOG;
@@ -64,8 +68,9 @@ class ControllerCommonImageManager extends Controller {
 					'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
 					'path'          => DIR_IMAGE . 'catalog/',         // path to files (REQUIRED)
 					'URL'           => $catalog_protocol . 'image/catalog/', // URL to files (REQUIRED)
+					'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
+					'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 					'accessControl' => 'access' ,            // disable and hide dot starting files (OPTIONAL)
-					//'alias'=>'Images',
 					'defaults' => array('read' => true, 'write' => true),
 					'uploadMaxSize'=>'200M',
 					'uploadAllow' => array(
@@ -81,7 +86,35 @@ class ControllerCommonImageManager extends Controller {
 					'attributes' => array(
 						array(
 							'pattern' => '~/\.~',
-							// 'pattern' => '/^\/\./',
+							'read' => true,
+							'write' => true,
+							'hidden' => true,
+							'locked' => false
+						)
+					)
+				),
+				// Trash volume
+				array(
+					'id'            => '1',
+					'driver'        => 'Trash',
+					'path'          => DIR_IMAGE . 'files/.trash/',
+					'tmbURL'        => $catalog_protocol . 'files/.trash/.tmb/',
+					'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
+					'uploadMaxSize'=>'200M',
+					'defaults' => array('read' => true, 'write' => true),
+					'uploadAllow' => array(
+						'image/jpeg',
+						'image/pjpeg',
+						'image/png',
+						'image/x-png',
+						'image/gif',
+						'application/x-shockwave-flash'
+					),
+					'uploadOrder'=> array( 'allow', 'deny' ),     // Same as above
+					'accessControl' => 'access',                    // Same as above
+					'attributes' => array(
+						array(
+							'pattern' => '~/\.~',
 							'read' => true,
 							'write' => true,
 							'hidden' => true,

@@ -9,22 +9,21 @@
     <div class="modal-body">
 		<div id="elfinder"></div>
     </div>
-	<div class="modal-footer"></div>
+	<div class="modal-footer">
+		<p><?php echo $powered; ?></p>
+	</div>
   </div>
 </div>
-
-<!-- ADD ELFINDER LANGUAGE -->
-<script type="text/javascript" src="view/javascript/imagemanager/elFinder/js/i18n/elfinder.ru.js"></script>
 
 <script>
 $(document).ready(function() {
 	$('#elfinder').elfinder({
-		url: 'index.php?route=common/imagemanager/init&token=<?php echo $token; ?>',
+		url: 'index.php?route=common/imagemanager/init&token=' + getURLVar('token'),
 		width: '100%',
-		lang: '<?php echo $language;?>',
 		resizable: false,
 		dragUploadAllow: true,
 		destroyOnClose: false,
+		soundPath : '<?php echo $sound_path; ?>',
 		commandsOptions: {
 		  getfile: {
 			multiple : true,
@@ -35,12 +34,12 @@ $(document).ready(function() {
 				$.each(files, function(item, file) {
 					if ((file.read && file.hash)) {
 						$.ajax({
-							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=<?php echo $token; ?>',
+							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=' + getURLVar('token'),
 							method: 'POST',
 							dataType: 'json',
 							async: false,
 							success: function(data) {							
-								parent.addImages(data.thumb, fm.path(file.hash), item);
+								parent.addImages(data.thumb, data.link, item);
 								
 								$('#modal-imagemanager').modal('hide');
 							}
@@ -51,23 +50,21 @@ $(document).ready(function() {
 				$.each(files, function(item, file) {
 					if ((file.read && file.hash)) {
 						$.ajax({
-							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=<?php echo $token; ?>',
+							url: 'index.php?route=common/imagemanager/getTmb&thumb=' + encodeURIComponent(fm.path(file.hash)) + '&token=' + getURLVar('token'),
 							method: 'POST',
 							dataType: 'json',
-							cache: false,
 							success: function(data) {
 								<?php if ($thumb) { ?>
 									$('#<?php echo $thumb; ?>').find('img').attr('src', data.thumb);
 								<?php } ?>
 								<?php if ($target) { ?>
-									$('#<?php echo $target; ?>').attr('value', fm.path(file.hash));
+									$('#<?php echo $target; ?>').attr('value', data.link);
 								<?php } ?>
 								
 								$('#modal-imagemanager').modal('hide');
 							}
 						});
 					}
-					
 				});
 			}
 		},
@@ -81,12 +78,13 @@ $(document).ready(function() {
 				['info'],
 				['quicklook'],
 				['copy', 'cut', 'paste'],
-				['rm'],
+				['rm', 'empty'],
 				['duplicate', 'rename', 'edit', 'resize'],
 				['extract', 'archive'],
 				['search'],
-				['view'],
-				['help']
+				['view', 'sort'],
+				['help'],
+				['fullscreen']
 			]
 		},
 		contextmenu : {

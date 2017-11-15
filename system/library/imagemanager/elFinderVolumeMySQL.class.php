@@ -69,7 +69,8 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 			'files_table'   => 'elfinder_file',
 			'tmbPath'       => '',
 			'tmpPath'       => '',
-			'rootCssClass'  => 'elfinder-navbar-root-sql'
+			'rootCssClass'  => 'elfinder-navbar-root-sql',
+			'noSessionCache' => array('hasdirs')
 		);
 		$this->options = array_merge($this->options, $opts);
 		$this->options['mimeDetect'] = 'internal';
@@ -147,7 +148,8 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 			$this->tmpPath = $tmp;
 		}
 		
-		if (!$this->tmpPath && $this->tmbPath && $this->tmbPathWritable) {
+		// fallback of $this->tmp
+		if (!$this->tmpPath && $this->tmbPathWritable) {
 			$this->tmpPath = $this->tmbPath;
 		}
 
@@ -235,7 +237,6 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 		$res = $this->query($sql);
 		if ($res) {
 			while ($row = $res->fetch_assoc()) {
-				// debug($row);
 				$id = $row['id'];
 				if ($row['parent_id']) {
 					$row['phash'] = $this->encode($row['parent_id']);
@@ -244,6 +245,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 				if ($row['mime'] == 'directory') {
 					unset($row['width']);
 					unset($row['height']);
+					$row['size'] = 0;
 				} else {
 					unset($row['dirs']);
 				}
@@ -539,7 +541,11 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 			if ($stat['mime'] == 'directory') {
 				unset($stat['width']);
 				unset($stat['height']);
+				$stat['size'] = 0;
 			} else {
+				if (!$stat['mime']) {
+					unset($stat['mime']);
+				}
 				unset($stat['dirs']);
 			}
 			unset($stat['id']);
@@ -655,7 +661,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _mkfile($path, $name) {
-		return $this->make($path, $name, 'text/plain') ? $this->_joinPath($path, $name) : false;
+		return $this->make($path, $name, '') ? $this->_joinPath($path, $name) : false;
 	}
 
 	/**

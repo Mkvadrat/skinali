@@ -14,9 +14,9 @@ class ControllerModuleBlock6 extends Controller {
 		
 		foreach($product_info as $info){
 			if ($info['image']) {
-				$image = $this->model_tool_image->resize($info['image'], '305', '190');
+				$image = $this->model_tool_image->resize($info['image'], '694', '140');
 			} else {
-				$image = $this->model_tool_image->resize('no_image.png', '305', '190');;
+				$image = $this->model_tool_image->resize('no_image.png', '694', '140');;
 			}
 			
 			$url = '';

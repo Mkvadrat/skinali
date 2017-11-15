@@ -9,6 +9,12 @@ class ModelCatalogOurprojects extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX ."posts_description SET posts_id = '" . (int)$posts_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', model = '" . $this->db->escape($value['model']) . "'");
 		}
 		
+		if (isset($data['posts_image'])) {
+			foreach ($data['posts_image'] as $posts_image) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "posts_image SET posts_id = '" . (int)$posts_id . "', image = '" . $this->db->escape($posts_image['image']) . "', sort_order = '" . (int)$posts_image['sort_order'] . "'");
+			}
+		}
+		
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'posts_id=" . (int)$posts_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
@@ -21,6 +27,14 @@ class ModelCatalogOurprojects extends Model {
 		
 		foreach ($data['posts'] as $key => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX ."posts_description SET posts_id = '" . (int)$posts_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', model = '" . $this->db->escape($value['model']) . "'");
+		}
+		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "posts_image WHERE posts_id = '" . (int)$posts_id . "'");
+
+		if (isset($data['posts_image'])) {
+			foreach ($data['posts_image'] as $posts_image) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "posts_image SET posts_id = '" . (int)$posts_id . "', image = '" . $this->db->escape($posts_image['image']) . "', sort_order = '" . (int)$posts_image['sort_order'] . "'");
+			}
 		}
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'posts_id=" . (int)$posts_id. "'");
@@ -72,9 +86,16 @@ class ModelCatalogOurprojects extends Model {
  
 		return $query->rows;
 	}
+	
+	public function getPostsImages($posts_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "posts_image WHERE posts_id = '" . (int)$posts_id . "' ORDER BY sort_order ASC");
+
+		return $query->rows;
+	}
    
 	public function deletePosts($posts_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "posts WHERE posts_id = '" . (int)$posts_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "posts_image WHERE posts_id = '" . (int)$posts_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "posts_description WHERE posts_id = '" . (int)$posts_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'posts_id=" . (int)$posts_id. "'");
 	}

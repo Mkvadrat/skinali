@@ -195,6 +195,13 @@ class ControllerCatalogJobs extends Controller {
 		$data['text_image_manager'] = $this->language->get('text_image_manager');
 		$data['text_model'] = $this->language->get('text_model');
 		
+		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$data['entry_image'] = $this->language->get('entry_image');
+		$data['tab_general'] = $this->language->get('tab_general');
+		$data['tab_image'] = $this->language->get('tab_image');
+		$data['button_image_add'] = $this->language->get('button_image_add');
+		$data['button_remove'] = $this->language->get('button_remove');
+		
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 		
@@ -274,6 +281,35 @@ class ControllerCatalogJobs extends Controller {
 			$data['status'] = $jobs['status'];
 		} else {
 			$data['status'] = '';
+		}
+		
+		// Images
+		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		
+		if (isset($this->request->post['jobs_image'])) {
+			$jobs_images = $this->request->post['jobs_image'];
+		} elseif (isset($this->request->get['jobs_id'])) {
+			$jobs_images = $this->model_catalog_jobs->getJobsImages($this->request->get['jobs_id']);
+		} else {
+			$jobs_images = array();
+		}
+
+		$data['jobs_images'] = array();
+
+		foreach ($jobs_images as $jobs_image) {
+			if (is_file(DIR_IMAGE . $jobs_image['image'])) {
+				$image = $jobs_image['image'];
+				$thumb = $jobs_image['image'];
+			} else {
+				$image = '';
+				$thumb = 'no_image.png';
+			}
+
+			$data['jobs_images'][] = array(
+				'image'      => $image,
+				'thumb'      => $this->model_tool_image->resize($thumb, 100, 100),
+				'sort_order' => $jobs_image['sort_order']
+			);
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

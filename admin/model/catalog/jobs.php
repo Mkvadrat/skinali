@@ -9,6 +9,12 @@ class ModelCatalogJobs extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX ."jobs_description SET jobs_id = '" . (int)$jobs_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', model = '" . $this->db->escape($value['model']) . "'");
 		}
 		
+		if (isset($data['jobs_image'])) {
+			foreach ($data['jobs_image'] as $jobs_image) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "jobs_image SET jobs_id = '" . (int)$jobs_id . "', image = '" . $this->db->escape($jobs_image['image']) . "', sort_order = '" . (int)$jobs_image['sort_order'] . "'");
+			}
+		}
+		
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'jobs_id=" . (int)$jobs_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
@@ -21,6 +27,14 @@ class ModelCatalogJobs extends Model {
 		
 		foreach ($data['jobs'] as $key => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX ."jobs_description SET jobs_id = '" . (int)$jobs_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', model = '" . $this->db->escape($value['model']) . "'");
+		}
+		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "jobs_image WHERE jobs_id = '" . (int)$jobs_id . "'");
+
+		if (isset($data['jobs_image'])) {
+			foreach ($data['jobs_image'] as $jobs_image) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "jobs_image SET jobs_id = '" . (int)$jobs_id . "', image = '" . $this->db->escape($jobs_image['image']) . "', sort_order = '" . (int)$jobs_image['sort_order'] . "'");
+			}
 		}
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'jobs_id=" . (int)$jobs_id. "'");
@@ -72,9 +86,16 @@ class ModelCatalogJobs extends Model {
  
 		return $query->rows;
 	}
+	
+	public function getJobsImages($jobs_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "jobs_image WHERE jobs_id = '" . (int)$jobs_id . "' ORDER BY sort_order ASC");
+
+		return $query->rows;
+	}
    
 	public function deletePosts($jobs_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "jobs WHERE jobs_id = '" . (int)$jobs_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "jobs_image WHERE jobs_id = '" . (int)$jobs_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "jobs_description WHERE jobs_id = '" . (int)$jobs_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'jobs_id=" . (int)$jobs_id. "'");
 	}

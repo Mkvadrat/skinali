@@ -46,6 +46,12 @@ class ModelExtensionOurprojects extends Model {
 		return $query->rows;
 	}
 	
+	public function getPostsImages($posts_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "posts_image WHERE posts_id = '" . (int)$posts_id . "' ORDER BY sort_order ASC");
+
+		return $query->rows;
+	}
+	
 	public function getTotalPosts() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "posts");
 	

@@ -125,7 +125,18 @@ class ControllerInformationOurprojects extends Controller {
 			
 			$this->load->model('tool/image');
 						
-			$data['image'] = $this->model_tool_image->resize($posts['full_image'], 963, 183);
+			$data['image'] = $this->model_tool_image->resize($posts['full_image'], 963, 589);
+			
+			$data['images'] = array();
+
+			$results = $this->model_extension_ourprojects->getPostsImages($this->request->get['posts_id']);
+
+			foreach ($results as $result) {
+				$data['images'][] = array(
+					'popup' => $this->model_tool_image->resize($result['image'], 963, 589),
+					'thumb' => $this->model_tool_image->resize($result['image'], 963, 589)
+				);
+			}
  
 			$data['heading_title'] = $posts['title'];
 			$data['model'] = $posts['model'];

@@ -29,5 +29,8 @@ $(document).ready(function() {
 	$(".menu-button").click(function() {
 		$(".menu-block .menu").slideToggle();
 	});
-	
+    
+    $(".fancybox").fancybox();
+    
+    $( '#gallery' ).jGallery();
 });

@@ -204,6 +204,13 @@ class ControllerCatalogOurprojects extends Controller {
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 		
+		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$data['entry_image'] = $this->language->get('entry_image');
+		$data['tab_general'] = $this->language->get('tab_general');
+		$data['tab_image'] = $this->language->get('tab_image');
+		$data['button_image_add'] = $this->language->get('button_image_add');
+		$data['button_remove'] = $this->language->get('button_remove');
+		
 		$data['token'] = $this->session->data['token'];
 		
 		$this->load->model('localisation/language');
@@ -286,6 +293,35 @@ class ControllerCatalogOurprojects extends Controller {
 			$data['status'] = $posts['status'];
 		} else {
 			$data['status'] = '';
+		}
+		
+		// Images
+		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		
+		if (isset($this->request->post['posts_image'])) {
+			$posts_images = $this->request->post['posts_image'];
+		} elseif (isset($this->request->get['posts_id'])) {
+			$posts_images = $this->model_catalog_ourprojects->getPostsImages($this->request->get['posts_id']);
+		} else {
+			$posts_images = array();
+		}
+
+		$data['posts_images'] = array();
+
+		foreach ($posts_images as $posts_image) {
+			if (is_file(DIR_IMAGE . $posts_image['image'])) {
+				$image = $posts_image['image'];
+				$thumb = $posts_image['image'];
+			} else {
+				$image = '';
+				$thumb = 'no_image.png';
+			}
+
+			$data['posts_images'][] = array(
+				'image'      => $image,
+				'thumb'      => $this->model_tool_image->resize($thumb, 100, 100),
+				'sort_order' => $posts_image['sort_order']
+			);
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

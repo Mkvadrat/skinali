@@ -141,7 +141,7 @@ $(document).ready(function() {
 			html: true,
 			placement: 'right',
 			trigger: 'manual',
-			content: function() {	
+			content: function() {
 				return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-imagemanager" class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i></button></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
 			}
 		});
@@ -150,57 +150,60 @@ $(document).ready(function() {
 
 		$('#button-image').on('click', function() {
 			$('#modal-image').remove();
-
-			$.ajax({
-				url: 'index.php?route=common/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
-				dataType: 'html',
-				beforeSend: function() {
-					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-					$('#button-image').prop('disabled', true);
-				},
-				complete: function() {
-					$('#button-image i').replaceWith('<i class="fa fa-pencil"></i>');
-					$('#button-image').prop('disabled', false);
-				},
-				success: function(html) {
-					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
-
-					$('#modal-image').modal('show');
-				}
-			});
-
-			$(element).popover('hide', function() {
-				$('.popover').remove();
-			});
-		});
-
-
-		$('#button-imagemanager').on('click', function() {
-			$('#modal-image').remove();
-
-			$.ajax({
-				url: 'index.php?route=common/imagemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
-				dataType: 'html',
-				beforeSend: function() {
-					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-					$('#button-image').prop('disabled', true);
-				},
-				complete: function() {
-					$('#button-image i').replaceWith('<i class="fa fa-pencil"></i>');
-					$('#button-image').prop('disabled', false);
-				},
-				success: function(html) {
-					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
-
-					$('#modal-image').modal('show');
-				}
-			});
-
-			$(element).popover('hide', function() {
-				$('.popover').remove();
-			});
-		});
 			
+			$.ajax({
+				url: 'index.php?route=common/filemanager&token=' + getURLVar('token'),
+				method: "GET",
+				dataType: 'html',
+				data: { thumb : $(element).attr('id'), target : $(element).parent().find('input').attr('id') },
+				beforeSend: function() {
+					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+					$('#button-image').prop('disabled', true);
+				},
+				complete: function() {
+					$('#button-image i').replaceWith('<i class="fa fa-pencil"></i>');
+					$('#button-image').prop('disabled', false);
+				},
+				success: function(html) {
+					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+
+					$('#modal-image').modal('show');
+				}
+			});
+
+			$(element).popover('hide', function() {
+				$('.popover').remove();
+			});
+		});
+		
+		$('#button-imagemanager').on('click', function() {
+			$('#modal-imagemanager').remove();
+
+			$.ajax({
+				url: 'index.php?route=common/imagemanager&token=' + getURLVar('token'),
+				method: "GET",
+				dataType: 'html',
+				data: { thumb : $(element).attr('id'), target : $(element).parent().find('input').attr('id') },
+				beforeSend: function() {
+					$('#button-imagemanager i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+					$('#button-imagemanager').prop('disabled', true);
+				},
+				complete: function() {
+					$('#button-imagemanager i').replaceWith('<i class="fa fa-pencil"></i>');
+					$('#button-imagemanager').prop('disabled', false);
+				},
+				success: function(html) {
+					$('body').append('<div id="modal-imagemanager" class="modal">' + html + '</div>');
+
+					$('#modal-imagemanager').modal('show');
+				}
+			});
+
+			$(element).popover('hide', function() {
+				$('.popover').remove();
+			});
+		});
+
 		$('#button-clear').on('click', function() {
 			$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 
@@ -211,7 +214,7 @@ $(document).ready(function() {
 			});
 		});
 	});
-
+	
 	// tooltips on hover
 	$('[data-toggle=\'tooltip\']').tooltip({container: 'body', html: true});
 

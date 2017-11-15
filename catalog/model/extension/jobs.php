@@ -46,6 +46,12 @@ class ModelExtensionJobs extends Model {
 		return $query->rows;
 	}
 	
+	public function getJobsImages($jobs_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "jobs_image WHERE jobs_id = '" . (int)$jobs_id . "' ORDER BY sort_order ASC");
+
+		return $query->rows;
+	}
+	
 	public function getTotalPosts() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "jobs");
 	

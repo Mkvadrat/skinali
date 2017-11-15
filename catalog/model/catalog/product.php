@@ -499,7 +499,7 @@ class ModelCatalogProduct extends Model {
 	}
 	
 	public function getLatestOurProject(){
-		$query = $this->db->query("SELECT product_id, model, image FROM " . DB_PREFIX . "product ORDER BY date_modified DESC LIMIT 6");
+		$query = $this->db->query("SELECT product_id, model, image FROM " . DB_PREFIX . "product ORDER BY date_modified DESC LIMIT 50");
 		
 		return $query->rows;
 	}

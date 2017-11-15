@@ -26,7 +26,13 @@
                     <p class="h1-title"><?php echo $heading_title; ?></p>
                     <p>Изображение <strong>№<?php echo $model; ?></strong></p>
 
-                    <p><img src="<?php echo $image; ?>" alt=""></p>
+                    <?php if($images){?>
+					<div id="gallery">
+					<?php foreach($images as $image){?>
+						<a href="<?php echo $image['popup']; ?>"><img src="<?php echo $image['popup']; ?>" alt="" /></a>
+					<?php } ?>
+					</div>
+					<?php } ?>
                 </div>
             </div>
         </div>

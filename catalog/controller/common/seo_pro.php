@@ -1,31 +1,23 @@
 <?php
 class ControllerCommonSeoPro extends Controller {
 	private $cache_data = null;
-	private $languages = array();
-	private $config_language;
 
 	public function __construct($registry) {
 		parent::__construct($registry);
 		$this->cache_data = $this->cache->get('seo_pro');
 		if (!$this->cache_data) {
-			$query = $this->db->query("SELECT LOWER(`keyword`) as 'keyword', `query` FROM " . DB_PREFIX . "url_alias");
+			$query = $this->db->query("SELECT LOWER(`keyword`) as 'keyword', `query` FROM " . DB_PREFIX . "url_alias ORDER BY url_alias_id");
 			$this->cache_data = array();
 			foreach ($query->rows as $row) {
+				if (isset($this->cache_data['keywords'][$row['keyword']])){
+					$this->cache_data['keywords'][$row['query']] = $this->cache_data['keywords'][$row['keyword']];
+					continue;
+				}
 				$this->cache_data['keywords'][$row['keyword']] = $row['query'];
 				$this->cache_data['queries'][$row['query']] = $row['keyword'];
 			}
 			$this->cache->set('seo_pro', $this->cache_data);
 		}
-
-		$query = $this->db->query("SELECT `value` FROM `" . DB_PREFIX . "setting` WHERE `key` = 'config_language'");
-		$this->config_language = $query->row['value'];
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "language WHERE status = '1'");
-
-		foreach ($query->rows as $result) {
-			$this->languages[$result['code']] = $result;
-		}
-
 	}
 
 	public function index() {
@@ -95,6 +87,8 @@ class ControllerCommonSeoPro extends Controller {
 				$this->request->get['route'] = 'product/category';
 			} elseif (isset($this->request->get['manufacturer_id'])) {
 				$this->request->get['route'] = 'product/manufacturer/info';
+			} elseif (isset($this->request->get['news_id'])) {
+				$this->request->get['route'] = 'information/news/news';
 			} elseif (isset($this->request->get['information_id'])) {
 				$this->request->get['route'] = 'information/information';
 			} elseif(isset($this->cache_data['queries'][$route_])) {
@@ -153,6 +147,7 @@ class ControllerCommonSeoPro extends Controller {
 				break;
 
 			case 'product/product/review':
+			case 'product/reservation':
 			case 'information/information/agree':
 				return $link;
 				break;
@@ -174,20 +169,24 @@ class ControllerCommonSeoPro extends Controller {
 		}
 
 		$queries = array();
-		if(!in_array($route, array('product/search'))) {
+		if(!in_array($route, array('product/search')) && $this->request->get['route'] != 'product/reservation') {
 			foreach($data as $key => $value) {
 				switch($key) {
 					case 'product_id':
 					case 'manufacturer_id':
 					case 'category_id':
 					case 'information_id':
-					case 'search':
 					case 'order_id':
 						$queries[] = $key . '=' . $value;
 						unset($data[$key]);
 						$postfix = 1;
 						break;
-
+					case 'news_id':
+						$queries[] = $key . '=' . $value;
+						unset($data[$key]);
+						$postfix = 1;
+						$is_news = true;
+						break;
 					case 'path':
 						$categories = explode('_', $value);
 						foreach($categories as $category) {
