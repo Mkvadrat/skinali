@@ -476,6 +476,10 @@ textarea:focus:-ms-input-placeholder {
 
   .half-blocks-list li {
 
+    background-position: center;
+    
+    background-size: cover;
+
     display: -webkit-box;
 
     display: -webkit-flex;
@@ -485,6 +489,10 @@ textarea:focus:-ms-input-placeholder {
     display: flex;
 
     width: 50%;
+    
+    min-height: 290px;
+    
+    height: auto;
 
     padding-left: 0;
 
@@ -1841,8 +1849,8 @@ textarea:focus:-ms-input-placeholder {
   text-align:center;
   padding:5px;
   position:fixed;
-  bottom:30px;
-  right:20px;
+  bottom:15px;
+  right:15px;
   cursor:pointer;
   display:none;
   z-index: 1000;
