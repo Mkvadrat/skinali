@@ -6,11 +6,11 @@
 
         <div class="row">
 
-            <div class="col-md-12 photo-bank">
+            <!-- <div class="col-md-12 photo-bank">
 
                 <p class="h1-title">Фотобанк</p>
 
-                <p><strong>Вы можете выбрать изображение для Вашего кухонного<br>фартука из нашего каталога изображений</strong></p>
+                <p><strong>Вы можете выбрать изображение для Вашего кухонного<br>фартука из нашего <a href="/fotobank/">каталога изображений</a></strong></p>
 
                 <ul class="products-list products-list-photobank">
 
@@ -18,9 +18,9 @@
 
                     <li style="background-image: url(<?php echo $result['image']; ?>);">
 
-                        <a href="<?php echo $result['href']; ?>">
+                        <a href="<?php echo $result['href']; ?>"> -->
 
-                            <!-- <img src="<?php echo $result['image']; ?>" alt=""> -->
+                            <!-- <img src="<?php echo $result['image']; ?>" alt=""> --><!--
 
                             <div class="number" id=""><?php echo $result['model']; ?></div>
 
@@ -38,7 +38,7 @@
 
                 </p>
 
-            </div>
+            </div> -->
 
         </div>
 

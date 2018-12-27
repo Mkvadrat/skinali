@@ -99,7 +99,11 @@ class ControllerCommonHeader extends Controller {
 		//Главное меню
 		$data['menu'] = array();
 		
-		$server_route = $this->request->get['route'];
+		if(isset($this->request->get['route'])){
+			$server_route = $this->request->get['route'];
+		}else{
+			$server_route = $_SERVER['DOCUMENT_ROOT'];
+		}
 		
 		$explode_route = explode('/', $server_route);
 		

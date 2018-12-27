@@ -6,7 +6,7 @@
 
         <div class="row">
 
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
 
                 <p class="h1-title">Наши работы</p>
 
@@ -36,7 +36,7 @@
 
                 </p>
 
-            </div>
+            </div> -->
 
         </div>
 

@@ -33,17 +33,4 @@ $(document).ready(function() {
     $(".fancybox").fancybox();
     
     $( '#gallery' ).jGallery();
-
-    $('.block-links .with').click(function() {
-    	$('.with-without').attr('style', 'background-image: url(catalog/view/theme/skinali/images/photo-14.jpg);');
-    });
-
-    $('.block-links .without').click(function() {
-    	$('.with-without').attr('style', 'background-image: url(catalog/view/theme/skinali/images/photo-15.jpg);');
-    });
-
-    $('.block-links a').click(function() {
-    	$('.block-links a').removeClass('active');
-    	$(this).addClass('active');
-    });
 });

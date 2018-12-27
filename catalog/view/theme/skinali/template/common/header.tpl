@@ -20,6 +20,8 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+<meta name="yandex-verification" content="7c9027f085727153" />
+
 <title><?php echo $title; if (isset($_GET['page'])) { echo " - ". ((int) $_GET['page'])." ".$text_page;} ?></title>
 
 <base href="<?php echo $base; ?>" />

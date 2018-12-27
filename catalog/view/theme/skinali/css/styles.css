@@ -476,10 +476,6 @@ textarea:focus:-ms-input-placeholder {
 
   .half-blocks-list li {
 
-    background-position: center;
-    
-    background-size: cover;
-
     display: -webkit-box;
 
     display: -webkit-flex;
@@ -489,10 +485,6 @@ textarea:focus:-ms-input-placeholder {
     display: flex;
 
     width: 50%;
-    
-    min-height: 290px;
-    
-    height: auto;
 
     padding-left: 0;
 
@@ -1849,8 +1841,8 @@ textarea:focus:-ms-input-placeholder {
   text-align:center;
   padding:5px;
   position:fixed;
-  bottom:15px;
-  right:15px;
+  bottom:30px;
+  right:20px;
   cursor:pointer;
   display:none;
   z-index: 1000;
@@ -1859,4 +1851,26 @@ textarea:focus:-ms-input-placeholder {
 #toTop i {
   font-size: 60px;
   color: #000;
+}
+
+/* 22.11.2017 */
+
+.fancybox-slide > div {
+  padding: 0 !important;
+}
+.header .top-line-header nav ul li:nth-child(2) a,
+.header .top-line-header nav ul li:nth-child(3) a,
+.header .top-line-header nav ul li:nth-child(4) a {
+  pointer-events: none;
+  color: #888;
+}
+.header .top-line-header nav ul li:nth-child(2):hover a,
+.header .top-line-header nav ul li:nth-child(3):hover a,
+.header .top-line-header nav ul li:nth-child(4):hover a {
+  background: #ccc;
+}
+.header .top-line-header nav ul li:nth-child(2) a:hover,
+.header .top-line-header nav ul li:nth-child(3) a:hover,
+.header .top-line-header nav ul li:nth-child(4) a:hover {
+  color: #888;
 }

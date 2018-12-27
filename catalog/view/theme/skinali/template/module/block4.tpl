@@ -32,7 +32,7 @@
 
         <div class="row">
 
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
 
                 <p class="h1-title">МОНТАЖ СКИНАЛЕЙ</p>
 
@@ -62,7 +62,7 @@
 
                 </p>
 
-            </div>
+            </div> -->
 
         </div>
 
