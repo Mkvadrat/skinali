@@ -76,23 +76,27 @@
 
                 <p class="h2-title">Заказать бесплатный звонок</p>
 
-                <fieldset>
+                <fieldset id="sendFullHiddenForm">
 
                     <span>Введите, пожалуйста, Ваши контактные данные</span>
-
+                    
+                    <div class="warning"></div>
+                    
                     <label for="#name">Ваше имя</label>
 
-                    <input id="name_full_hidden_form" type="text">
+                    <input id="name_full_hidden_form" name="name" class="reset_input" value="" type="text">
 
                     <label for="tel">Ваш мобильный номер</label>
 
-                    <input id="tel_full_hidden_form" type="tel">
+                    <input id="tel_full_hidden_form" name="tel" class="reset_input" value="" type="tel">
 
                     <label>Ваш вопрос или комментарий</label>
 
-                    <textarea id="question_full_hidden_form"></textarea>
+                    <textarea id="question_full_hidden_form" name="question" class="reset_input"></textarea>
 
                     <span><i class="fa fa-lock" aria-hidden="true"></i>Ваши данные надёжно защищены</span>
+                    
+                    <?php echo $captcha; ?>
 
                     <input class="button" onclick="sendFullHiddenForm();" type="submit" value="Оставить заявку">
 
@@ -102,9 +106,7 @@
 
         </div>
 
-
-
-        <div id="application">
+        <!--<div id="application">
 
             <div class="form banner-form">
 
@@ -134,143 +136,13 @@
 
             </div>
 
-        </div>
+        </div>-->
 
     </div>
 
     <!-- end footer -->
 
 <!-- Смена картинки при клике -->
-
-<script type="text/javascript">
-    function l_image (a) {
-        document.example_img.src=a
-    }
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".fancybox").fancybox();
-    });
-</script>
-
-<!-- Формы -->
-<script type="text/javascript">
-
-function sendFormHeader(){
-	$.ajax({
-		url: 'index.php?route=common/footer/sendForm',
-		type: 'post',
-		data: {  
-            'name' : $('#name_header').val(),
-            'tel' : $('#tel_header').val(),
-        },
-		dataType: 'json',
-		success: function(data) {
-			swal(data.message);
-            
-            if(data.status == 200){
-                $('#name_header').val('');
-                $('#tel_header').val('');
-            }
-		}
-	});
-}
-
-function sendFormFooter(){
-	$.ajax({
-		url: 'index.php?route=common/footer/sendForm',
-		type: 'post',
-		data: {  
-            'name' : $('#name_footer').val(),
-            'tel' : $('#tel_footer').val(),
-        },
-		dataType: 'json',
-		success: function(data) {
-			swal(data.message);
-            
-            if(data.status == 200){
-                $('#name_footer').val('');
-                $('#tel_footer').val('');
-            }
-		}
-	});
-}
-
-function sendFullForm(){
-	$.ajax({
-		url: 'index.php?route=common/footer/sendFullForm',
-		type: 'post',
-		data: {  
-            'name' : $('#name_contact_page').val(),
-            'tel' : $('#tel_contact_page').val(),
-			'question' : $('#question_contact_page').val(),
-        },
-		dataType: 'json',
-		success: function(data) {
-			swal(data.message);
-            
-            if(data.status == 200){
-                $('#name_contact_page').val('');
-                $('#tel_contact_page').val('');
-                $('#question_contact_page').val('');
-            }
-		}
-	});
-}
-
-function sendFullHiddenForm(){
-	$.ajax({
-		url: 'index.php?route=common/footer/sendFullForm',
-		type: 'post',
-		data: {  
-            'name' : $('#name_full_hidden_form').val(),
-            'tel' : $('#tel_full_hidden_form').val(),
-			'question' : $('#question_full_hidden_form').val(),
-        },
-		dataType: 'json',
-		success: function(data) {
-			swal(data.message);
-            
-            if(data.status == 200){
-                $('#name_full_hidden_form').val('');
-                $('#tel_full_hidden_form').val('');
-                $('#question_full_hidden_form').val('');
-            }
-		}
-	});
-}
-
-function sendBidForm(){
-	var check;
-	if($("#check_bid_form").is(':checked')){
-		check = $("#checkvalue").val();
-	}else{
-		check = '';
-	}
-
-	var data = {  
-		'name' : $('#name_bid_form').val(),
-		'tel' : $('#tel_bid_form').val(),
-		'check' : check,
-    };
-
-	$.ajax({
-		url: 'index.php?route=common/footer/sendBidForm',
-		type: 'post',
-		data: data,
-		dataType: 'json',
-		success: function(data) {
-			swal(data.message);
-            
-            if(data.status == 200){
-                $('#name_bid_form').val('');
-                $('#tel_bid_form').val('');
-            }
-		}
-	});
-}
-</script>
 
 </body>
 </html>

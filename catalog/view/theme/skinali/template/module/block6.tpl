@@ -64,17 +64,21 @@
 
                         <p class="h2-title">Оставить заявку на расчёт стоимости</p>
 
-                        <fieldset>
+                        <fieldset id="sendFormFooter">
+                            
+                            <div class="warning"></div>
 
                             <label for="name">Ваше имя</label>
 
-                            <input id="name_footer" type="text">
+                            <input id="name_footer" name="name" class="reset_input" value="" type="text">
 
                             <label for="tel">Ваш мобильный номер</label>
 
-                            <input id="tel_footer" type="tel">
+                            <input id="tel_footer" name="tel" class="reset_input" value="" type="text">
 
                             <span><i class="fa fa-lock" aria-hidden="true"></i>Ваши данные надёжно защищены</span>
+                            
+                            <?php echo $captcha; ?>
 
                             <input class="button" onclick="sendFormFooter();" type="submit" value="Оставить заявку">
 

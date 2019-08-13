@@ -219,7 +219,7 @@
 
                                 <?php } ?>
 
-                                <li><a class="fancybox" href="#application">Заявка</a></li>
+                                
 
                             </ul>
 

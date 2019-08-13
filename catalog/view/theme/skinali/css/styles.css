@@ -979,7 +979,7 @@ textarea:focus:-ms-input-placeholder {
 
         display: none; }
 
-      .header .top-line-header nav ul li:last-child a {
+      #.header .top-line-header nav ul li:last-child a {
 
         margin-top: 3px;
 

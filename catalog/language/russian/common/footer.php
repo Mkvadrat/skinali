@@ -15,3 +15,11 @@ $_['text_order']        = 'История заказов';
 $_['text_wishlist']     = 'Мои Закладки';
 $_['text_newsletter']   = 'Рассылка новостей';
 $_['text_powered']      = 'Работает на <a target="_blank" href="http://myopencart.com/">ocStore</a><br /> %s &copy; %s';
+
+//error
+$_['error_name']        = 'Имя должно быть от 3 до 32 символов!';
+$_['error_tel']         = 'Телефон должен быть от 3 до 32 символов!';
+$_['error_question']    = 'Вопрос должен быть от 10 до 3000 символов!';
+
+// Email
+$_['email_subject']  = 'Сообщение %s';
