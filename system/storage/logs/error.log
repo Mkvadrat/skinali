@@ -195,3 +195,4 @@ error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol in /var/www/
 2019-08-13 17:44:01 - PHP Notice:  Undefined index: tel in D:\OpenServer\domains\skinali.3331141.xeovo.ml\catalog\controller\module\block6.php on line 108
 2019-08-13 17:44:01 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\skinali.3331141.xeovo.ml\catalog\controller\module\block6.php on line 82
 2019-08-13 17:44:01 - PHP Notice:  Undefined index: tel in D:\OpenServer\domains\skinali.3331141.xeovo.ml\catalog\controller\module\block6.php on line 86
+2019-08-14 11:47:12 - PHP Notice:  Undefined variable: block6_status_status in D:\OpenServer\domains\skinali.3331141.xeovo.ml\admin\view\template\module\block6.tpl on line 32

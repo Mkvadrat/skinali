@@ -73,6 +73,40 @@ function sendFullHiddenForm() {
     });
 }
 
+function sendFullForm() {
+    var data = $('#sendFullForm').serialize();
+    
+    $.ajax({
+        url: 'index.php?route=information/contact/sendFullForm',
+        type: 'post',
+        data: data,
+        dataType: 'json',
+        success: function (data) {
+            if(data.success){
+                $(".warning").html('');
+                
+                $(".reset_input").val('');
+    
+                swal({
+                    title: data.success,
+                    text: "",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+    
+                $.fancybox.close();
+                
+                location.reload();
+            }
+            
+            if(data.error){
+                var error = data.error;
+                $(".warning").html('<div class="warning">' + error.join("") + '</div>');
+            }
+        }
+    });
+}
+
 function sendFormHeader() {
     var data = $('#sendFormHeader').serialize();
     

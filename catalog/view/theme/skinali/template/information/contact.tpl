@@ -80,14 +80,18 @@
                     <p class="h2-title">Форма обратной связи</p>
                     <p>Вы можете задать интересующий Вас вопрос при помощи формы обратной связи</p>
 
-                    <div class="form contact-form" action="">
-                        <fieldset>
+                    <div class="form contact-form">
+                        <fieldset id="sendFullForm">
+                            <div class="warning"></div>
                             <label for="#name">Ваше имя</label>
-                            <input id="name_contact_page" type="text">
+                            <input id="name_contact_page" name="name" class="reset_input" value="" type="text">
                             <label for="tel">Ваш мобильный номер</label>
-                            <input id="tel_contact_page" type="tel">
+                            <input id="tel_contact_page" name="tel" class="reset_input" value="" type="tel">
                             <label for="#question">Ваш вопрос или комментарий</label>
-                            <textarea id="question_contact_page"></textarea>
+                            <textarea id="question_contact_page" name="question" class="reset_input"></textarea>
+                            
+                            <?php echo $captcha; ?>
+                            
                             <input class="button" onclick="sendFullForm();" type="submit" value="Оставить">
                         </fieldset>
                     </div>
