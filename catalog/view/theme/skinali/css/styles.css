@@ -1874,3 +1874,15 @@ textarea:focus:-ms-input-placeholder {
 .header .top-line-header nav ul li:nth-child(4) a:hover {
   color: #888;
 }
+
+.form-row{
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.form-row .form-control.col-sm-6{
+  width: 50%;
+}
+.footer {
+  margin-top: 120px;
+}

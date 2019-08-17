@@ -400,6 +400,19 @@
 
 	}
 
+	.form-row .col-sm-12 {
+
+		text-align: center;
+
+		width: 100%;
+	}
+
+	.footer {
+
+		margin-top: 160px;
+
+	}
+
 }
 
 
@@ -676,6 +689,10 @@
 
 		margin-right: auto;
 
+	}
+
+	.footer {
+		margin-top: 0;
 	}
 
 }
