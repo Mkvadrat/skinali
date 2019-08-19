@@ -1886,3 +1886,7 @@ textarea:focus:-ms-input-placeholder {
 .footer {
   margin-top: 120px;
 }
+
+.main-contacts .contact-form img {
+  margin-top: 0;
+}
